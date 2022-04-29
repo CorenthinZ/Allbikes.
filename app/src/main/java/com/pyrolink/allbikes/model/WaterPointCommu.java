@@ -14,7 +14,7 @@ import java.util.Map;
 public class WaterPointCommu extends WaterPoint
 {
     private boolean _certified;
-    private DocumentReference _authorRef;
+    private final DocumentReference _authorRef;
     private User _author;
 
     public WaterPointCommu(String id, String title, String accessibility, String imgUrl, GeoPoint location,
@@ -42,9 +42,10 @@ public class WaterPointCommu extends WaterPoint
         return _author;
     }
 
+    @SuppressWarnings({ "unchecked", "ConstantConditions" })
     public void loadAuthor(Callback<User> callback)
     {
-        _author = User.USERS.getOrDefault(_authorRef.getId(), null);
+        // _author = User.USERS.getOrDefault(_authorRef.getId(), null);
 
         if (_author != null)
             return;

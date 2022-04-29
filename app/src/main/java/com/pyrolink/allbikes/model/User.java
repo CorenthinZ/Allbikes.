@@ -1,14 +1,19 @@
 package com.pyrolink.allbikes.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
 public class User
 {
-    public static Map<String, User> USERS = new HashMap<>();
-
+    @NonNull
+    @PrimaryKey
     private String id;
 
     private String firstName;
@@ -18,7 +23,7 @@ public class User
     private Date birthDate;
     private ArrayList<String> leisures;
 
-    public User(String id, String firstName, String lastName, String email, String city, Date birthDate,
+    public User(@NonNull String id, String firstName, String lastName, String email, String city, Date birthDate,
                 ArrayList<String> leisures)
     {
         this.id = id;
@@ -28,16 +33,15 @@ public class User
         this.city = city;
         this.birthDate = birthDate;
         this.leisures = leisures;
-
-        USERS.put(id, this);
     }
 
+    @NonNull
     public String getId()
     {
         return id;
     }
 
-    public void setId(String id)
+    public void setId(@NonNull String id)
     {
         this.id = id;
     }

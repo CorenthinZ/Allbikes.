@@ -1,24 +1,19 @@
-package com.pyrolink.allbikes.dao;
+package com.pyrolink.allbikes.database;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.pyrolink.allbikes.Callback;
 import com.pyrolink.allbikes.Callback2;
-import com.pyrolink.allbikes.model.WaterPoint;
 
 import java.util.Map;
 
-public class AppDatabase
+public class FirestoreDb
 {
-
     @NonNull
     public static FirebaseFirestore getDb() { return FirebaseFirestore.getInstance(); }
 

@@ -1,26 +1,18 @@
 package com.pyrolink.allbikes.model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.pyrolink.allbikes.Callback;
-import com.pyrolink.allbikes.dao.AppDatabase;
 
-import java.util.ArrayList;
+import com.pyrolink.allbikes.database.FirestoreDb;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class WaterPoint
 {
-    private String _id;
+    private final String _id;
     private String _title;
     private Accessibility _accessibility;
     private String _imgUrl;
@@ -55,11 +47,13 @@ public class WaterPoint
         _location = location;
     }
 
+
+    @SuppressWarnings("ConstantConditions")
     public static void readAll(Callback<WaterPoint> callback)
     {
         // KbM02jnBFDB81fLaZYSF =>
         // {accessibility=, pictureUrl=, coordinates=GeoPoint { latitude=-1.0, longitude=1.0 }, title=}
-        AppDatabase.readAll("WaterPoint", (id, wp) ->
+        FirestoreDb.readAll("WaterPoint", (id, wp) ->
         {
             WaterPoint waterPoint = wp.get("certified") == null ?
                     new WaterPoint(id, (String) wp.get("title"), (String) wp.get("accessibility"),
