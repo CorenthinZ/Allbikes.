@@ -1,6 +1,8 @@
 package com.pyrolink.allbikes;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,8 +53,8 @@ public class MainActivity extends AppCompatActivity
 
             WaterPoint.readAll(wp ->
             {
-                MarkerOptions mo = new MarkerOptions()
-                        .position(new LatLng(wp.getLocation().getLatitude(), wp.getLocation().getLongitude()))
+                MarkerOptions mo = new MarkerOptions().position(
+                                new LatLng(wp.getLocation().getLatitude(), wp.getLocation().getLongitude()))
                         .title(wp.getTitle());
 
                 _markers.put(map.addMarker(mo), wp);
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity
     boolean onMarker(@NonNull Marker marker)
     {
         WaterPoint wp = _markers.get(marker);
-        if (marker.getSnippet() == null && wp instanceof WaterPointCommu)
+        if (wp instanceof WaterPointCommu)
         {
             WaterPointCommu wpc = (WaterPointCommu) wp;
 
@@ -82,13 +84,24 @@ public class MainActivity extends AppCompatActivity
                         marker.showInfoWindow();
                     }
                 });
-            else
+            else if (marker.getSnippet() == null)
             {
                 marker.setSnippet(author.getFirstName());
             }
+
+            _binding.stars.setVisibility(View.VISIBLE);
+
+            for (int i = 0; i < 5; i++)
+                ((ImageView) _binding.stars.getChildAt(i)).setImageResource(
+                        i <= wpc.getNote() ? android.R.drawable.btn_star_big_on : android.R.drawable.btn_star_big_off);
+        }
+        else
+        {
+            _binding.stars.setVisibility(View.INVISIBLE);
         }
 
-        _binding.title.setText(marker.getTitle());
+        _binding.title.setText(wp.getTitle());
+        _binding.accessibility.setText(String.valueOf(wp.getAccessibility()));
 
         return false;
     }

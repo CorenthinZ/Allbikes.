@@ -119,6 +119,15 @@ public class WaterPoint
         return null;
     }
 
+    public int getNote()
+    {
+        double d = 0;
+        List<Note> notes = getNotes();
+        for (Note note : notes)
+            d += note.getNote();
+        return (int) d / notes.size();
+    }
+
     public void addNote(Note note)
     {
         // this._notes = notes;
