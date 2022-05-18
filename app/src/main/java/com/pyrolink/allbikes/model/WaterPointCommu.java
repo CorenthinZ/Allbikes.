@@ -1,5 +1,6 @@
 package com.pyrolink.allbikes.model;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.Timestamp;
@@ -43,8 +44,9 @@ public class WaterPointCommu extends WaterPoint
     }
 
     @SuppressWarnings({ "unchecked", "ConstantConditions" })
-    public void loadAuthor(Callback<User> callback)
+    public void loadAuthor(Context context, Callback<User> callback)
     {
+        // if ()
         // _author = User.USERS.getOrDefault(_authorRef.getId(), null);
 
         if (_author != null)

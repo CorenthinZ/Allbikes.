@@ -17,19 +17,20 @@ public abstract class RoomDb extends RoomDatabase
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Allbikes.LocalDb";
 
-    public abstract UserDao appDao();
+    public abstract UserDao userDao();
 
-    private static volatile RoomDatabase INSTANCE;
+    private static volatile RoomDb INSTANCE;
 
-    public static RoomDatabase getDatabase(Context context)
+    public static RoomDb getDatabase(Context context)
     {
         if (INSTANCE != null)
             return INSTANCE;
 
-        synchronized (RoomDatabase.class)
+
+        synchronized (RoomDb.class)
         {
             if (INSTANCE == null)
-                INSTANCE = Room.databaseBuilder(context, RoomDatabase.class, DATABASE_NAME)
+                INSTANCE = Room.databaseBuilder(context, RoomDb.class, DATABASE_NAME)
                         .fallbackToDestructiveMigration().allowMainThreadQueries().build();
         }
 

@@ -1,8 +1,6 @@
 package com.pyrolink.allbikes;
 
 import android.os.Bundle;
-import android.os.Debug;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         mapView = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapView.getMapAsync(googleMap ->
         {
-            googleMap.setOnMarkerClickListener(this::Test);
+            googleMap.setOnMarkerClickListener(this::onMarker);
 
             map = googleMap;
             map.getUiSettings().setMyLocationButtonEnabled(false);
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    boolean Test(@NonNull Marker marker)
+    boolean onMarker(@NonNull Marker marker)
     {
         WaterPoint wp = _markers.get(marker);
         if (marker.getSnippet() == null && wp instanceof WaterPointCommu)
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
             User author = wpc.getAuthor();
             if (author == null)
-                wpc.loadAuthor(user ->
+                wpc.loadAuthor(this, user ->
                 {
                     marker.setSnippet(user.getFirstName());
                     if (marker.isInfoWindowShown())

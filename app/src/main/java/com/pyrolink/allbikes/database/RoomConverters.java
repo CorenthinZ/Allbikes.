@@ -22,9 +22,10 @@ public class RoomConverters
     }
 
     @TypeConverter
-    public static Date toDate(String date) throws ParseException
+    public static Date toDate(String date)
     {
-        return _SDF.parse(date);
+        try { return _SDF.parse(date); }
+        catch (ParseException ignored) { return null; }
     }
 
     @TypeConverter
