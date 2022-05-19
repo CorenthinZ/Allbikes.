@@ -1,14 +1,22 @@
 package com.pyrolink.allbikes.model;
 
+import android.content.Context;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.pyrolink.allbikes.Callback;
 
 import com.pyrolink.allbikes.database.FirestoreDb;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class WaterPoint
 {
@@ -112,25 +120,6 @@ public class WaterPoint
     public void setLocation(GeoPoint location)
     {
         this._location = location;
-    }
-
-    public List<Note> getNotes()
-    {
-        return null;
-    }
-
-    public int getNote()
-    {
-        double d = 0;
-        List<Note> notes = getNotes();
-        for (Note note : notes)
-            d += note.getNote();
-        return (int) d / notes.size();
-    }
-
-    public void addNote(Note note)
-    {
-        // this._notes = notes;
     }
 
     // endregion

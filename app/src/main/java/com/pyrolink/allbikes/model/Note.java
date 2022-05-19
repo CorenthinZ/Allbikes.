@@ -2,12 +2,18 @@ package com.pyrolink.allbikes.model;
 
 public class Note
 {
-    private int id;
+    private final String id;
     private User author;
     private int note;
     private String commentary;
 
-    public int getId()
+    public Note(String id, int note)
+    {
+        this.id = id;
+        this.note = note;
+    }
+
+    public String getId()
     {
         return id;
     }

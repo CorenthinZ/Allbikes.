@@ -8,8 +8,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.GeoPoint;
 import com.pyrolink.allbikes.Callback;
+import com.pyrolink.allbikes.database.FirestoreDb;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WaterPointCommu extends WaterPoint
@@ -17,6 +19,8 @@ public class WaterPointCommu extends WaterPoint
     private boolean _certified;
     private final DocumentReference _authorRef;
     private User _author;
+
+    private List<Note> _notes;
 
     public WaterPointCommu(String id, String title, String accessibility, String imgUrl, GeoPoint location,
                            boolean certified, DocumentReference author)
@@ -44,11 +48,8 @@ public class WaterPointCommu extends WaterPoint
     }
 
     @SuppressWarnings({ "unchecked", "ConstantConditions" })
-    public void loadAuthor(Context context, Callback<User> callback)
+    public void loadAuthor(Callback<User> callback)
     {
-        // if ()
-        // _author = User.USERS.getOrDefault(_authorRef.getId(), null);
-
         if (_author != null)
             return;
 
@@ -77,5 +78,33 @@ public class WaterPointCommu extends WaterPoint
     private void setAuthor(User author)
     {
         _author = author;
+    }
+
+    public List<Note> getNotes() { return _notes; }
+
+    public void loadNotes(Callback<List<Note>> callback)
+    {
+        if (_notes != null)
+            return;
+
+        _notes = new ArrayList<>();
+        FirestoreDb.readWhere("Note", "waterPointCommu",
+                FirestoreDb.getDb().collection("WaterPoint").document(super.getId()),
+                (id, map) -> _notes.add(new Note(id, (int) (long) map.get("note"))))
+                .addOnCompleteListener(task -> callback.call(_notes));
+    }
+
+    public Integer getNote()
+    {
+        if (_notes == null)
+            return null;
+
+        if (_notes.size() == 0)
+            return -1;
+
+        double d = 0;
+        for (Note note : _notes)
+            d += note.getNote();
+        return (int) d / _notes.size();
     }
 }
