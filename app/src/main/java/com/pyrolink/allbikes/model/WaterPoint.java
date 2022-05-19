@@ -1,6 +1,8 @@
 package com.pyrolink.allbikes.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ public class WaterPoint
     private String _title;
     private Accessibility _accessibility;
     private String _imgUrl;
+    private Bitmap _img;
     private GeoPoint _location;
 
     public WaterPoint(String id, String title, String accessibility, String imgUrl, GeoPoint location)
@@ -120,6 +123,16 @@ public class WaterPoint
     public void setLocation(GeoPoint location)
     {
         this._location = location;
+    }
+
+    public Bitmap getImg()
+    {
+        return _img;
+    }
+
+    public void setImg(Bitmap img)
+    {
+        this._img = _img;
     }
 
     // endregion

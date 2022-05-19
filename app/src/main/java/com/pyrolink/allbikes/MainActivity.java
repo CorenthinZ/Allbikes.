@@ -2,6 +2,8 @@ package com.pyrolink.allbikes;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,9 @@ import com.pyrolink.allbikes.model.Note;
 import com.pyrolink.allbikes.model.User;
 import com.pyrolink.allbikes.model.WaterPoint;
 import com.pyrolink.allbikes.model.WaterPointCommu;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -128,6 +133,13 @@ public class MainActivity extends AppCompatActivity
         _binding.title.setText(wp.getTitle());
         _binding.accessibility.setText(String.valueOf(wp.getAccessibility()));
 
+        if (wp.getImg() == null)
+            Picasso.get()
+                    .load("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png")
+                    .into(setPcImg(wp));
+        else
+            _binding.img.setImageBitmap(wp.getImg());
+
         return false;
     }
 
@@ -135,8 +147,10 @@ public class MainActivity extends AppCompatActivity
     private void reshowInfo(Marker marker)
     {
         _reshow = true;
+
         marker.hideInfoWindow();
         marker.showInfoWindow();
+
         _reshow = false;
     }
 
@@ -154,5 +168,26 @@ public class MainActivity extends AppCompatActivity
 
         _selected = null;
         _binding.data.setVisibility(View.INVISIBLE);
+    }
+
+    private Target setPcImg(WaterPoint wp)
+    {
+        return new Target()
+        {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from)
+            {
+                wp.setImg(bitmap);
+
+                if (wp == _selected)
+                    _binding.img.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) { }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) { }
+        };
     }
 }
