@@ -1,14 +1,9 @@
 package com.pyrolink.allbikes;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,21 +18,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pyrolink.allbikes.databinding.ActivityMainBinding;
-import com.pyrolink.allbikes.model.Note;
 import com.pyrolink.allbikes.model.User;
 import com.pyrolink.allbikes.model.WaterPoint;
 import com.pyrolink.allbikes.model.WaterPointCommu;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
@@ -87,6 +74,7 @@ public class MainActivity extends AppCompatActivity
 
     private boolean _reshow;
 
+    @SuppressWarnings("ConstantConditions")
     private boolean onMarker(@NonNull Marker marker)
     {
         _binding.data.setVisibility(View.VISIBLE);

@@ -1,24 +1,14 @@
 package com.pyrolink.allbikes.model;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.pyrolink.allbikes.Callback;
 
 import com.pyrolink.allbikes.database.FirestoreDb;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class WaterPoint
 {

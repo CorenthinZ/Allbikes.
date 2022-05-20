@@ -1,6 +1,5 @@
 package com.pyrolink.allbikes.model;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.Timestamp;
@@ -82,6 +81,7 @@ public class WaterPointCommu extends WaterPoint
 
     public List<Note> getNotes() { return _notes; }
 
+    @SuppressWarnings("ConstantConditions")
     public void loadNotes(Callback<List<Note>> callback)
     {
         if (_notes != null)

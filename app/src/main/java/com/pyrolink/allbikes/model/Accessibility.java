@@ -23,6 +23,7 @@ public enum Accessibility
     }};
 
 
+    @SuppressWarnings("ConstantConditions")
     @NonNull
     @Override
     public String toString() { return strings.getOrDefault(this, "None"); }
