@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         _binding.filtersHidden.setOnClickListener(view -> showFilters(true));
-        _binding.filterTitle.setOnClickListener(view -> showFilters(false));
+        _binding.filters.setOnTitleClick(view -> showFilters(false));
+        _binding.filters.setOnNote(i -> Toast.makeText(this, String.valueOf(i), Toast.LENGTH_SHORT).show());
 
         _markers = new HashMap<>();
 
@@ -115,11 +117,11 @@ public class MainActivity extends AppCompatActivity
                 wpc.loadNotes(ignored ->
                 {
                     if (wp == _selected)
-                        setStars(wpc.getNote());
+                        _binding.stars.setStars(wpc.getNote());
                 });
             else
             {
-                setStars(note);
+                _binding.stars.setStars(note);
             }
         }
         else
@@ -149,12 +151,6 @@ public class MainActivity extends AppCompatActivity
         marker.showInfoWindow();
 
         _reshow = false;
-    }
-
-    private void setStars(int note)
-    {
-        for (int i = 0; i < 5; i++)
-            _binding.stars.setStar(i, i < note);
     }
 
     private void onInfoClose(Marker marker)

@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
+import com.pyrolink.allbikes.Callback;
+import com.pyrolink.allbikes.Callback2;
 import com.pyrolink.allbikes.R;
 
 public class Stars extends LinearLayout
@@ -35,9 +37,24 @@ public class Stars extends LinearLayout
         _layout = (LinearLayout) getChildAt(0);
     }
 
+    public void setStars(int limit)
+    {
+        for (int i = 0; i < 5; i++)
+            setStar(i, i < limit);
+    }
+
     public void setStar(int index, boolean active)
     {
         ((ImageView) _layout.getChildAt(index)).setImageResource(
                 active ? android.R.drawable.btn_star_big_on : android.R.drawable.btn_star_big_off);
+    }
+
+    public void setOnStarClick(Callback<Integer> onStar)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            int finalI = i;
+            _layout.getChildAt(i).setOnClickListener(view -> onStar.call(finalI));
+        }
     }
 }
