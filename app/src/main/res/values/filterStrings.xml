@@ -1,0 +1,15 @@
+<resources>
+    <string name="filters">Filtres</string>
+
+    <string name="distanceTitle">Distance</string>
+    <string name="distanceMin">0km</string>
+    <string name="distanceMax">50km</string>
+
+    <string name="accessibilityTitle">Accessibility</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="fontaine">Fontaine</string>
+    <string name="riviere">Rivière</string>
+    <string name="toilettes">Toilettes publiques</string>
+
+    <string name="opinionsTitle">Avis</string>
+</resources>

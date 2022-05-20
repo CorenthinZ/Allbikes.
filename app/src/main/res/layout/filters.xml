@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Distance" />
+        android:text="@string/distanceTitle" />
 
     <LinearLayout
         style="@style/filterElement"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0km" />
+            android:text="@string/distanceMin" />
 
         <SeekBar
             android:id="@+id/distance"
@@ -39,13 +39,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50km" />
+            android:text="@string/distanceMax" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Accessibility" />
+        android:text="@string/accessibilityTitle" />
 
     <GridLayout
         android:id="@+id/choice_grid"
@@ -54,25 +54,25 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_columnWeight="1"
-            android:text="Restaurant" />
+            android:text="@string/restaurant" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_columnWeight="1"
-            android:text="Fontaine" />
+            android:text="@string/fontaine" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_columnWeight="1"
-            android:text="Rivière" />
+            android:text="@string/riviere" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_columnWeight="1"
-            android:text="Toilettes publiques" />
+            android:text="@string/toilettes" />
     </GridLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Avis" />
+        android:text="@string/opinionsTitle" />
 
     <com.pyrolink.allbikes.component.Stars
         android:id="@+id/stars"
