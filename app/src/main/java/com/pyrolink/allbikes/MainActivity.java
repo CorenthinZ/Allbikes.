@@ -157,8 +157,7 @@ public class MainActivity extends AppCompatActivity
     private void setStars(int note)
     {
         for (int i = 0; i < 5; i++)
-            ((ImageView) _binding.stars.getChildAt(i)).setImageResource(
-                    i < note ? android.R.drawable.btn_star_big_on : android.R.drawable.btn_star_big_off);
+            _binding.stars.setStar(i, i < note);
     }
 
     private void onInfoClose(Marker marker)
