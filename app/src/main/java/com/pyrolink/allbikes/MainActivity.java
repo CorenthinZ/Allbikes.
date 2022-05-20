@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity
 
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        _binding.filtersHidden.setOnClickListener(view -> showFilters(true));
+        _binding.filterTitle.setOnClickListener(view -> showFilters(false));
+
         _markers = new HashMap<>();
 
         mapView = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
@@ -70,6 +73,12 @@ public class MainActivity extends AppCompatActivity
             CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cam.build());
             map.moveCamera(cameraUpdate);
         });
+    }
+
+    private void showFilters(boolean visibility)
+    {
+        _binding.filtersHidden.setVisibility(visibility ? View.INVISIBLE : View.VISIBLE);
+        _binding.filters.setVisibility(visibility ? View.VISIBLE : View.INVISIBLE);
     }
 
     private boolean _reshow;

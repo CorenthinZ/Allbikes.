@@ -78,7 +78,7 @@
             android:background="?colorOnPrimary"
             android:gravity="center"
             android:text="@string/filters"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <LinearLayout
             android:id="@+id/filters"
@@ -92,6 +92,7 @@
             app:layout_constraintTop_toTopOf="@id/guideline">
 
             <TextView
+                android:id="@+id/filterTitle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
