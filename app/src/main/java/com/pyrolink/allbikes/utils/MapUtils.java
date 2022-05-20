@@ -6,7 +6,7 @@ public final class MapUtils
 {
     private MapUtils() { }
 
-    public <K, V> K getKey(Map<K, V> map, V value)
+    public static <K, V> K getKey(Map<K, V> map, V value)
     {
         for (Map.Entry<K, V> entry : map.entrySet())
             if (entry.getValue().equals(value))

@@ -34,25 +34,7 @@ public class WaterPoint
         _id = id;
         _title = title;
 
-        switch (accessibility)
-        {
-            case "Debutant":
-                _accessibility = Accessibility.Debutant;
-                break;
-            case "Intermediaire":
-                _accessibility = Accessibility.Intermediaire;
-                break;
-            case "Avance":
-                _accessibility = Accessibility.Avance;
-                break;
-            case "Confirme":
-                _accessibility = Accessibility.Confirme;
-                break;
-
-            default:
-                _accessibility = null;
-                break;
-        }
+        _accessibility = Accessibility.get(accessibility);
 
         _imgUrl = imgUrl;
         _location = location;
@@ -132,7 +114,7 @@ public class WaterPoint
 
     public void setImg(Bitmap img)
     {
-        this._img = _img;
+        this._img = img;
     }
 
     // endregion
