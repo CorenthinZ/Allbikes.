@@ -68,7 +68,7 @@ public class Filters extends LinearLayout
     {
         _stars.setOnStarClick(index ->
         {
-            _stars.setStars(index);
+            _stars.setStars(index + 1);
             onNote.call(index);
         });
     }
