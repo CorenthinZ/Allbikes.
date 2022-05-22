@@ -48,26 +48,9 @@
         android:text="@string/accessibilityTitle" />
 
     <GridLayout
-        android:id="@+id/choice_grid"
+        android:id="@+id/accessibility"
         style="@style/filterElement"
-        android:columnCount="3">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_columnWeight="1"
-            android:text="@string/restaurant" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_columnWeight="1"
-            android:text="@string/fontaine" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_columnWeight="1"
-            android:text="@string/riviere" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_columnWeight="1"
-            android:text="@string/toilettes" />
-    </GridLayout>
+        android:columnCount="3" />
 
     <TextView
         android:layout_width="match_parent"

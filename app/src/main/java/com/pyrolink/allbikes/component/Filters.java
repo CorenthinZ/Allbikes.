@@ -3,25 +3,32 @@ package com.pyrolink.allbikes.component;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.Nullable;
 
 import com.pyrolink.allbikes.Callback;
+import com.pyrolink.allbikes.Callback2;
 import com.pyrolink.allbikes.R;
+import com.pyrolink.allbikes.model.Accessibility;
 
 public class Filters extends LinearLayout
 {
     private TextView _title;
     private Stars _stars;
     private SeekBar _distance;
+    private GridLayout _accessibility;
 
     public Filters(Context context)
     {
         super(context);
         initControl(context);
+
+        ToggleButton tb = new ToggleButton(getContext());
     }
 
     public Filters(Context context, @Nullable AttributeSet attrs)
@@ -39,6 +46,21 @@ public class Filters extends LinearLayout
         _title = findViewById(R.id.filterTitle);
         _stars = findViewById(R.id.stars);
         _distance = findViewById(R.id.distance);
+
+        _accessibility = findViewById(R.id.accessibility);
+
+        for (Accessibility accessibility : Accessibility.class.getEnumConstants())
+        {
+            ToggleButton tb = new ToggleButton(getContext());
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+            tb.setLayoutParams(params);
+            tb.setText(accessibility.toString());
+            tb.setTextOn(accessibility.toString());
+            tb.setTextOff(accessibility.toString());
+            tb.setChecked(true);
+            _accessibility.addView(tb);
+        }
     }
 
     public void setOnTitleClick(OnClickListener onClick) { _title.setOnClickListener(onClick); }
@@ -71,5 +93,16 @@ public class Filters extends LinearLayout
             _stars.setStars(index + 1);
             onNote.call(index);
         });
+    }
+
+    public void setOnAccessibility(Callback2<Accessibility, Boolean> onAccessibility)
+    {
+        for (int i = 0; i < _accessibility.getChildCount(); i++)
+        {
+            ToggleButton tb = (ToggleButton) _accessibility.getChildAt(i);
+
+            tb.setOnCheckedChangeListener(
+                    (button, checked) -> onAccessibility.call(Accessibility.get(tb.getText().toString()), checked));
+        }
     }
 }
