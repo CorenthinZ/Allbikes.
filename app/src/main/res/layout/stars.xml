@@ -4,28 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_star_big_on" />
+    <ImageView style="@style/star" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_star_big_on" />
+    <ImageView style="@style/star" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_star_big_on" />
+    <ImageView style="@style/star" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_star_big_on" />
+    <ImageView style="@style/star" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_star_big_on" />
+    <ImageView style="@style/star" />
 </LinearLayout>
