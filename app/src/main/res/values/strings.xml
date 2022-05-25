@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Allbikes</string>
+    <string name="searchBarHint">Rechercher</string>
 </resources>

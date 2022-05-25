@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pyrolink.allbikes.databinding.ActivityMainBinding;
+import com.pyrolink.allbikes.model.Accessibility;
 import com.pyrolink.allbikes.model.User;
 import com.pyrolink.allbikes.model.WaterPoint;
 import com.pyrolink.allbikes.model.WaterPointCommu;
@@ -47,9 +48,11 @@ public class MainActivity extends AppCompatActivity
 
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        _binding.filtersHidden.setOnClickListener(view -> showFilters(true));
-        _binding.filters.setOnTitleClick(view -> showFilters(false));
-        _binding.filters.setOnNote(i -> Toast.makeText(this, String.valueOf(i), Toast.LENGTH_SHORT).show());
+        _binding.filtersHidden.setOnClickListener(view -> showFilters());
+        _binding.filters.setOnTitleClick(view -> hideFilters());
+        _binding.filters.setOnDistance(i -> Toast.makeText(this, String.valueOf(i), Toast.LENGTH_SHORT).show());
+        _binding.filters.setOnNote(this::onStarFiltered);
+        _binding.filters.setOnAccessibility(this::onAccessibilityFiltered);
 
         _markers = new HashMap<>();
 
@@ -77,7 +80,21 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void showFilters(boolean visibility)
+    private void hideFilters() { setFiltersVisibility(false); }
+
+    private void showFilters()
+    {
+        for (Marker marker : _markers.keySet())
+            if (marker.isInfoWindowShown())
+            {
+                marker.hideInfoWindow();
+                break;
+            }
+
+        setFiltersVisibility(true);
+    }
+
+    private void setFiltersVisibility(boolean visibility)
     {
         _binding.filtersHidden.setVisibility(visibility ? View.INVISIBLE : View.VISIBLE);
         _binding.filters.setVisibility(visibility ? View.VISIBLE : View.INVISIBLE);
@@ -89,6 +106,9 @@ public class MainActivity extends AppCompatActivity
     private boolean onMarker(@NonNull Marker marker)
     {
         _binding.data.setVisibility(View.VISIBLE);
+
+        if (_binding.filters.getVisibility() == View.VISIBLE)
+            hideFilters();
 
         WaterPoint wp = _markers.get(marker);
         _selected = wp;
@@ -181,5 +201,26 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPrepareLoad(Drawable placeHolderDrawable) { }
         };
+    }
+
+    private void onAccessibilityFiltered(Accessibility accessibility, boolean checked)
+    {
+        for (Map.Entry<Marker, WaterPoint> marker : _markers.entrySet())
+            if (marker.getValue().getAccessibility() == accessibility)
+                marker.getKey().setVisible(checked);
+    }
+
+    private void onStarFiltered(int i)
+    {
+        for (Map.Entry<Marker, WaterPoint> marker : _markers.entrySet())
+            if (marker.getValue() instanceof WaterPointCommu)
+            {
+                WaterPointCommu wpc = (WaterPointCommu) marker.getValue();
+                Integer note = wpc.getNote();
+                if (note == null)
+                    wpc.loadNotes(notes -> marker.getKey().setVisible(wpc.getNote() <= i));
+                else
+                    marker.getKey().setVisible(wpc.getNote() <= i);
+            }
     }
 }
