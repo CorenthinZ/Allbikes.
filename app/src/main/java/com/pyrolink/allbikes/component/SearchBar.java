@@ -1,19 +1,16 @@
 package com.pyrolink.allbikes.component;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.Gravity;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.pyrolink.allbikes.Callback;
+import com.pyrolink.allbikes.interfaces.Callback;
 import com.pyrolink.allbikes.R;
 
 public class SearchBar extends androidx.appcompat.widget.AppCompatEditText

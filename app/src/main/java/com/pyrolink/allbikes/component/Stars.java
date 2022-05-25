@@ -8,8 +8,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.pyrolink.allbikes.Callback;
-import com.pyrolink.allbikes.Callback2;
+import com.pyrolink.allbikes.interfaces.Callback;
 import com.pyrolink.allbikes.R;
 
 public class Stars extends LinearLayout

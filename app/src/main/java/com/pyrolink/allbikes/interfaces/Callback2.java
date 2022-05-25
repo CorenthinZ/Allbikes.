@@ -1,4 +1,4 @@
-package com.pyrolink.allbikes;
+package com.pyrolink.allbikes.interfaces;
 
 public interface Callback2<T, U>
 {
