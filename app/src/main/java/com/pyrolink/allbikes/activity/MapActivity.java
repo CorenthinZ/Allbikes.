@@ -1,4 +1,4 @@
-package com.pyrolink.allbikes;
+package com.pyrolink.allbikes.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -27,8 +27,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.firestore.GeoPoint;
-import com.pyrolink.allbikes.databinding.ActivityMainBinding;
+import com.pyrolink.allbikes.R;
+import com.pyrolink.allbikes.databinding.ActivityMapBinding;
 import com.pyrolink.allbikes.interfaces.Callback2;
 import com.pyrolink.allbikes.model.Accessibility;
 import com.pyrolink.allbikes.model.User;
@@ -37,19 +37,16 @@ import com.pyrolink.allbikes.model.WaterPointCommu;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-public class MainActivity extends AppCompatActivity
+public class MapActivity extends AppCompatActivity
 {
     private static final int LOCATION_PERMISSION = 2001;
 
     public static final LatLng annecy = new LatLng(45.899919, 6.128141);
 
-    private ActivityMainBinding _binding;
+    private ActivityMapBinding _binding;
     private MapFragment mapView;
     private GoogleMap map;
 
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity
                 new String[]{ Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION },
                 LOCATION_PERMISSION);
 
-        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_map);
 
         _binding.filtersHidden.setOnClickListener(view -> showFilters());
         _binding.filters.setOnTitleClick(view -> hideFilters());
@@ -249,7 +246,7 @@ public class MainActivity extends AppCompatActivity
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
                         PackageManager.PERMISSION_GRANTED)
         {
-            Toast.makeText(MainActivity.this, "Autorisation de localisation requise", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MapActivity.this, "Autorisation de localisation requise", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -285,7 +282,7 @@ public class MainActivity extends AppCompatActivity
                 marker.setVisible(delta <= distance * 1_000);
             });
             String tmp = location.getLatitude() + ", " + location.getLongitude();
-            Toast.makeText(MainActivity.this, tmp, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MapActivity.this, tmp, Toast.LENGTH_SHORT).show();
         }, Looper.getMainLooper());
     }
 

@@ -14,7 +14,7 @@
             android:value="@string/mapKey"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
