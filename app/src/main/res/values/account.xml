@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mail">Mail</string>
+    <string name="pwd">Mot de passe</string>
+    <string name="pwdForbidden">Mot de passe oublié ?</string>
+    <string name="noAccount">Vous n\'avez pas de compte ?</string>
+    <string name="createOne">\ Inscrivez-vous</string>
+    <string name="account">Vous avez déjà un compte ?</string>
+    <string name="goLogin">\ Connectez-vous</string>
+
+    <!--  Finish inscription  -->
+
+    <string name="finishInscription">Finaliser l\'inscription</string>
+    <string name="lastName">Nom</string>
+    <string name="firstName">Prénom</string>
+    <string name="birthdate">Date de naissance</string>
+    <string name="city">Ville</string>
+    <string name="cyclismLevel">Niveau de cyclisme</string>
+</resources>

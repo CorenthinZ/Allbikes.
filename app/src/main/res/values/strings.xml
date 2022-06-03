@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Allbikes</string>
     <string name="searchBarHint">Rechercher</string>
+    <string name="createAccount">S\'inscrire</string>
+    <string name="returnChar">&#8249;</string>
+    <string name="beginner">Débutant</string>
+    <string name="expert">Expert</string>
+    <string name="vtt">VTT</string>
+    <string name="tourism">Tourisme</string>
+    <string name="sportExtreme">Sport extrême</string>
+    <string name="walk">Balade</string>
+    <string name="validate">Valider</string>
+    <string name="leisure">Loisirs</string>
+    <string name="date">%02d/%02d/%04d</string>
 </resources>
