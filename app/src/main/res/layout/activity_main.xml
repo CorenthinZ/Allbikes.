@@ -7,6 +7,19 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="75dp"
+            android:layout_weight="1"
+            android:src="?attr/myLogo" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login"
             android:layout_width="wrap_content"
@@ -25,5 +38,10 @@
             android:padding="10dp"
             android:text="@string/createAccount"
             android:textAllCaps="false" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 </layout>
