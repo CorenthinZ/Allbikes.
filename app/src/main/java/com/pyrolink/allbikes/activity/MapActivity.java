@@ -92,14 +92,24 @@ public class MapActivity extends AppCompatActivity
 
                 _markers.put(map.addMarker(mo), wp);
             });
+        });
+    }
 
-            onLocation(location ->
-            {
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                CameraPosition.Builder cam = new CameraPosition.Builder().target(latLng);
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cam.build());
-                map.moveCamera(cameraUpdate);
-            });
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode != LOCATION_PERMISSION)
+            return;
+
+        onLocation(location ->
+        {
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            CameraPosition.Builder cam = new CameraPosition.Builder().target(latLng).zoom(14f);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cam.build());
+            map.moveCamera(cameraUpdate);
         });
     }
 
@@ -274,10 +284,7 @@ public class MapActivity extends AppCompatActivity
         Criteria c = new Criteria();
         c.setAccuracy(Criteria.ACCURACY_FINE);
 
-        locMgr.requestSingleUpdate(c, location ->
-        {
-
-        }, Looper.getMainLooper());
+        locMgr.requestSingleUpdate(c, onLocation::call, Looper.getMainLooper());
     }
 
     private void onDistance(int distance)
