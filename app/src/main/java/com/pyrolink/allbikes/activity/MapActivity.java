@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pyrolink.allbikes.R;
 import com.pyrolink.allbikes.databinding.ActivityMapBinding;
+import com.pyrolink.allbikes.interfaces.Callback;
 import com.pyrolink.allbikes.interfaces.Callback2;
 import com.pyrolink.allbikes.model.Accessibility;
 import com.pyrolink.allbikes.model.User;
@@ -92,9 +93,13 @@ public class MapActivity extends AppCompatActivity
                 _markers.put(map.addMarker(mo), wp);
             });
 
-            CameraPosition.Builder cam = new CameraPosition.Builder().target(annecy).zoom(14.0f);
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cam.build());
-            map.moveCamera(cameraUpdate);
+            onLocation(location ->
+            {
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                CameraPosition.Builder cam = new CameraPosition.Builder().target(latLng);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cam.build());
+                map.moveCamera(cameraUpdate);
+            });
         });
     }
 
@@ -237,7 +242,7 @@ public class MapActivity extends AppCompatActivity
                 waterPoint.getTitle().toLowerCase().contains(search.toLowerCase())));
     }
 
-    private void onDistance(int distance)
+    private void onLocation(Callback<Location> onLocation)
     {
         LocationManager locMgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -271,6 +276,14 @@ public class MapActivity extends AppCompatActivity
 
         locMgr.requestSingleUpdate(c, location ->
         {
+
+        }, Looper.getMainLooper());
+    }
+
+    private void onDistance(int distance)
+    {
+        onLocation(location ->
+        {
             forEachMarkers((marker, waterPoint) ->
             {
                 Location wpLoc = new Location((String) null);
@@ -283,7 +296,7 @@ public class MapActivity extends AppCompatActivity
             });
             String tmp = location.getLatitude() + ", " + location.getLongitude();
             Toast.makeText(MapActivity.this, tmp, Toast.LENGTH_SHORT).show();
-        }, Looper.getMainLooper());
+        });
     }
 
     private void onAccessibilityFiltered(Accessibility accessibility, boolean checked)
