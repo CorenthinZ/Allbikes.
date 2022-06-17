@@ -30,7 +30,8 @@
             <EditText
                 android:id="@+id/mail"
                 style="@style/editText"
-                android:hint="@string/mail" />
+                android:hint="@string/mail"
+                android:inputType="textEmailAddress" />
 
             <Space
                 android:layout_width="match_parent"
@@ -40,7 +41,9 @@
             <EditText
                 android:id="@+id/pwd"
                 style="@style/editText"
-                android:hint="@string/pwd" />
+                android:hint="@string/pwd"
+                android:inputType="textPassword"
+                android:maxLines="1" />
 
             <Space
                 android:layout_width="match_parent"
