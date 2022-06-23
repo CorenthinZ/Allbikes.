@@ -1,5 +1,7 @@
 package com.pyrolink.allbikes.component;
 
+// region Imports
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,12 +18,20 @@ import com.pyrolink.allbikes.interfaces.Callback2;
 import com.pyrolink.allbikes.R;
 import com.pyrolink.allbikes.model.Accessibility;
 
+// endregion
+
 public class Filters extends LinearLayout
 {
+    // region Variables
+
     private TextView _title;
     private Stars _stars;
     private SeekBar _distance;
     private GridLayout _accessibility;
+
+    // endregion
+
+    // region Constructors
 
     public Filters(Context context)
     {
@@ -35,6 +45,8 @@ public class Filters extends LinearLayout
         initControl(context);
     }
 
+    // endregion
+
     private void initControl(Context context)
     {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,6 +58,8 @@ public class Filters extends LinearLayout
         _distance = findViewById(R.id.distance);
 
         _accessibility = findViewById(R.id.accessibility);
+
+        // region Accessibility ToggleButtons
 
         for (Accessibility accessibility : Accessibility.class.getEnumConstants())
         {
@@ -59,6 +73,8 @@ public class Filters extends LinearLayout
             tb.setChecked(true);
             _accessibility.addView(tb);
         }
+
+        // endregion
     }
 
     public void setOnTitleClick(OnClickListener onClick) { _title.setOnClickListener(onClick); }
@@ -76,11 +92,15 @@ public class Filters extends LinearLayout
                 onProgress.call(progress);
             }
 
+            // region Empty Overrides
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) { }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) { }
+
+            // endregion
         });
     }
 
