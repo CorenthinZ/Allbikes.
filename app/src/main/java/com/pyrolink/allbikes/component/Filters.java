@@ -27,8 +27,6 @@ public class Filters extends LinearLayout
     {
         super(context);
         initControl(context);
-
-        ToggleButton tb = new ToggleButton(getContext());
     }
 
     public Filters(Context context, @Nullable AttributeSet attrs)
